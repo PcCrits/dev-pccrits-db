@@ -1,1 +1,2 @@
-# dev-pccrits-db
+# pc-crits-db
+Pc crits db rest API

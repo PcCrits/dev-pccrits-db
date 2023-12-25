@@ -18,10 +18,11 @@ const storeSession = MongoStore.create({
 			name: 'pccrits.sid',
 			secret: process.env.SESSION_SECRET,
    store: storeSession,
-			resave: true,
-			saveUninitialized: true,
+			resave: false,
+			saveUninitialized: false,
 			cookie: {
-				secure: true,
+    sameSite: 'strict',
+				secure: !process.env.WEB_APP_BASE_URL.includes('localhost'),
 				maxAge: 1000 * 60 * 60 * 24
 			}
 		})

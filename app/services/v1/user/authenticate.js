@@ -10,7 +10,7 @@ const authenticate = async (payload) => {
 
 	try {
 		const user = await User.findOne({email: payload.email})
-  .select('first_name', 'last_name', 'email')
+  .select('first_name last_name email')
 
 		if (!user) {
 			return {

@@ -9,7 +9,8 @@ const storeSession = MongoStore.create({
  dbName: process.env.DB_NAME,
  collectionName: 'mySessions',
  ttl: 114*24*60*68,
- autoRemove: "native"
+ autoRemove: "native",
+ prefix: 'pccrits.'
 })
 
 	app.use(
@@ -17,10 +18,10 @@ const storeSession = MongoStore.create({
 			name: 'pccrits.sid',
 			secret: process.env.SESSION_SECRET,
    store: storeSession,
-			resave: false,
-			saveUninitialized: false,
+			resave: true,
+			saveUninitialized: true,
 			cookie: {
-				secure: !process.env.WEB_APP_BASE_URL.includes('localhost'),
+				secure: true,
 				maxAge: 1000 * 60 * 60 * 24
 			}
 		})

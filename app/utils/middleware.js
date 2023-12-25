@@ -14,8 +14,7 @@ const storeSession = MongoStore.create({
 
 	app.use(
 		session({
-			name: 'pcCrits.sid',
-			store: null,
+			name: 'pccrits.sid',
 			secret: process.env.SESSION_SECRET,
    store: storeSession,
 			resave: false,

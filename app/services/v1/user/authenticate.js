@@ -10,7 +10,6 @@ const authenticate = async (payload) => {
 
 	try {
 		const user = await User.findOne({email: payload.email})
-  .select(['first_name', 'last_name', 'email'])
 
 		if (!user) {
 			return {
@@ -30,10 +29,17 @@ const authenticate = async (payload) => {
 			}
 		}
 
+  const data = {
+   firstName: user.first_name,
+   lastName: user.last_name,
+   email: user.email,
+   userExtId: user._id
+  }
+
 		return {
 			status_code: 200,
 			message: 'User authenticated',
-			data: user
+			data
 		}
 	} catch (error) {
 		console.log(error)

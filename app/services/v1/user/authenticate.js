@@ -9,7 +9,7 @@ const authenticate = async (payload) => {
 	console.log('Invoke #authenticate()', payload, __filename)
 
 	try {
-		const user = await User.findOne({email: payload.email})
+		const user = await User.findOne({email: payload.email}).populate(['password', 'salt', '_id'])
 
 		if (!user) {
 			return {

@@ -9,7 +9,7 @@ const authenticate = async (payload) => {
 	console.log('Invoke #authenticate()', payload, __filename)
 
 	try {
-		const user = await User.findOne({email: payload.email}).select('-password')
+		const user = await User.findOne({email: payload.email}).select('password')
 
 		if (!user) {
 			return {

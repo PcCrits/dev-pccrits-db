@@ -1,11 +1,12 @@
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import i18next from './i18n'
+import { dbUrl } from './constance'
 
 export const applySession = async (app) => {
 
 const storeSession = MongoStore.create({
- mongoUrl: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+ mongoUrl: dbUrl,
  dbName: process.env.DB_NAME,
  collectionName: 'mySessions',
  ttl: 114*24*60*68,

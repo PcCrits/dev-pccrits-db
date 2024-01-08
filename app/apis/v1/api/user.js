@@ -1,7 +1,7 @@
 import express from 'express'
 
 import * as UserController from '../../../controllers/user'
-import { protectRoute } from '../../../utils/middleware'
+import {protectRoute} from '../../../utils/middleware'
 
 const router = express.Router()
 

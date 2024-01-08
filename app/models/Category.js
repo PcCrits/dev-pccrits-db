@@ -8,9 +8,9 @@ export const categorySchema = new Schema(
 		description: {
 			type: String
 		},
-  image: {
-   type: String
-  }
+		image: {
+			type: String
+		}
 	},
 	{
 		timestamps: {

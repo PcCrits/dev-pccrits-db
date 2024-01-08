@@ -2,14 +2,13 @@ import {fileURLToPath} from 'url'
 import * as services from '../../services/v1/user'
 import {handleError} from '../../utils'
 
-
 const __filename = fileURLToPath(import.meta.url)
 
 export const signup = async (req, res) => {
 	const errLocation = `${__filename} #signup()`
 
 	try {
-        const response = await services.signup(req.body)
+		const response = await services.signup(req.body)
 
 		const {status_code: statusCode, message, data, error} = response
 		

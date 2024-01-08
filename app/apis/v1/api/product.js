@@ -1,7 +1,7 @@
 import express from 'express'
 
 import * as ProductController from '../../../controllers/product'
-import { protectRoute } from '../../../utils/middleware'
+import {protectRoute} from '../../../utils/middleware'
 
 const router = express.Router()
 

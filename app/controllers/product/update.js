@@ -2,15 +2,14 @@ import {fileURLToPath} from 'url'
 import * as services from '../../services/v1/product'
 import {handleError} from '../../utils'
 
-
 const __filename = fileURLToPath(import.meta.url)
 
 export const update = async (req, res) => {
 	const errLocation = `${__filename} #CtrUpdateProduct()`
 
 	try {
-  const payload = {filter: {_id: req.params.id}, data: {...req.body}}
-  const response = await services.updateProduct(payload)
+		const payload = {filter: {_id: req.params.id}, data: {...req.body}}
+		const response = await services.updateProduct(payload)
 
 		const {status_code: statusCode, message, data, error} = response
 		

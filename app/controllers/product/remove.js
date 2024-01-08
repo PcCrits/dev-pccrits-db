@@ -2,14 +2,13 @@ import {fileURLToPath} from 'url'
 import * as services from '../../services/v1/product'
 import {handleError} from '../../utils'
 
-
 const __filename = fileURLToPath(import.meta.url)
 
 export const remove = async (req, res) => {
 	const errLocation = `${__filename} #CtrDeleteProduct()`
 
 	try {
-        const response = await services.deleteProduct({...req.params})
+		const response = await services.deleteProduct({...req.params})
 
 		const {status_code: statusCode, message, data, error} = response
 		

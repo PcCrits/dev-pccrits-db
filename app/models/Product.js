@@ -36,6 +36,10 @@ export const productSchema = new Schema(
  color: {
   type: String
  },
+ deleted_at: {
+		type: Date,
+		default: null
+	}
 	},
 	{
 		timestamps: {

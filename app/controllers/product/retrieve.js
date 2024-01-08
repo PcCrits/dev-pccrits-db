@@ -1,24 +1,21 @@
 import {fileURLToPath} from 'url'
-import * as services from '../../services/v1/user'
+import * as services from '../../services/v1/product'
 import {handleError} from '../../utils'
 
 
 const __filename = fileURLToPath(import.meta.url)
 
-export const signup = async (req, res) => {
-	const errLocation = `${__filename} #signup()`
+export const retrieve = async (req, res) => {
+	const errLocation = `${__filename} #CtrRetrieveProduct()`
 
 	try {
-        const response = await services.signup(req.body)
+        const response = await services.retrieveProduct({...req.params})
 
 		const {status_code: statusCode, message, data, error} = response
 		
 		if (statusCode !== 200) {
 			return res.status(statusCode).send({success: false, status_code: statusCode, message, error})
 		}
-
-		req.session.authenticated = true
-		req.session.user = data
 
 		return res.status(statusCode).send({
 			success: true,
@@ -34,4 +31,4 @@ export const signup = async (req, res) => {
 	}
 }
 
-export default signup
+export default retrieve

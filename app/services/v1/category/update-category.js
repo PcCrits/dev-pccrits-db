@@ -1,26 +1,25 @@
 import {fileURLToPath} from 'url'
 import mongoose from 'mongoose'
-import Product from '../../../models/Product'
+import Category from '../../../models/Category'
 
 const __filename = fileURLToPath(import.meta.url)
 
-const createProduct = async (payload) => {
-	console.log('Invoke #createProduct()', payload, __filename)
+const updateCategory = async (payload) => {
+	console.log('Invoke #updateCategory()', payload, __filename)
 
 	const session = await mongoose.startSession()
 	session.startTransaction()
 
 	try {
-		const {name} = payload
+		const {filter, data} = payload
 
-		const exist = await Product.findOne({name, deleted_at: null})
+		const response = await Category.findOneAndUpdate(filter, data, {new: true})
 
-		if (exist) {
-			const error = `Name "${name}" was already in used`
+		if (!response) {
+			const error = 'Category you are trying to update was not found'
+
 			return {status_code: 400, error}
 		}
-
-		const response = await Product.create(payload)
 
 		session.commitTransaction()
 		session.endSession()
@@ -40,4 +39,4 @@ const createProduct = async (payload) => {
 	}
 }
 
-export default createProduct
+export default updateCategory

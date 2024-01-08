@@ -11,6 +11,14 @@ const deleteProduct = async (payload) => {
 	session.startTransaction()
 
 	try {
+		const response = await Product.findOne({_id: payload.id, deleted_at: null})
+
+		if (!response) {
+			const error = 'Product you are trying to delete was not found'
+
+			return {status_code: 400, error}
+		}
+
 		await Product.findByIdAndUpdate(payload.id, {
 			deleted_at: new Date()
 		})

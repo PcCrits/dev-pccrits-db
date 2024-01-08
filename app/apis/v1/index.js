@@ -1,9 +1,13 @@
 import express from 'express'
 
-import apiRoutes from './api'
+import userRoutes from './user'
+import productRoutes from './product'
+import categoryRoutes from './category'
 
 const router = express.Router()
 
-router.use('/api', apiRoutes)
+router.use('/user', userRoutes)
+router.use('/product', productRoutes)
+router.use('/category', categoryRoutes)
 
 export default router

@@ -4,38 +4,39 @@ export const productSchema = new Schema(
 	{
 		name: {
 			type: String,
-   required: [true, 'Field `name` is required']
+			required: [true, 'Field `name` is required']
 		},
 		description: {
 			type: String,
-   required: [true, 'Field `description` is required']
+			required: [true, 'Field `description` is required']
 		},
- in_stock: {
-  type: Number,
-  required: [true, 'Field `stock` is required']
- },
- images: {
-  type: [String],
- },
- category: {
-  type: String,
-  ref: "Category",
- },
- rate: {
-  type: String
- },
- price: {
-  type: mongoose.Types.Decimal128
- },
- currency: {
-  type: String
- },
- currency: {
-  type: String
- },
- color: {
-  type: String
- },
+		in_stock: {
+			type: Number,
+			required: [true, 'Field `stock` is required']
+		},
+		images: {
+			type: [String]
+		},
+		category: {
+			type: String,
+			ref: 'Category'
+		},
+		rate: {
+			type: String
+		},
+		price: {
+			type: mongoose.Types.Decimal128
+		},
+		currency: {
+			type: String
+		},
+		color: {
+			type: String
+		},
+		deleted_at: {
+			type: Date,
+			default: null
+		}
 	},
 	{
 		timestamps: {

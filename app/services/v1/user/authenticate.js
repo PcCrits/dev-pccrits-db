@@ -29,12 +29,12 @@ const authenticate = async (payload) => {
 			}
 		}
 
-  const data = {
-   firstName: user.first_name,
-   lastName: user.last_name,
-   email: user.email,
-   userExtId: user._id
-  }
+		const data = {
+			firstName: user.first_name,
+			lastName: user.last_name,
+			email: user.email,
+			userExtId: user._id
+		}
 
 		return {
 			status_code: 200,
@@ -47,6 +47,5 @@ const authenticate = async (payload) => {
 		return {status_code: 400, message: error.message}
 	}
 }
-
 
 export default authenticate

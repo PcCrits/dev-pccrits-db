@@ -8,7 +8,7 @@ const {encryptPassword} = password
 const __filename = fileURLToPath(import.meta.url)
 const emailExist = async email => User.findOne({email})
 
-const validateConfirmPassword = (password, confirmPassword) => password === confirmPassword
+const validateConfirmPassword = (inputPassword, confirmPassword) => inputPassword === confirmPassword
 
 const signup = async (payload) => {
 	console.log('Invoke #signup()', payload, __filename)
@@ -56,6 +56,5 @@ const signup = async (payload) => {
 		return {status_code: 400, message: error.message}
 	}
 }
-
 
 export default signup

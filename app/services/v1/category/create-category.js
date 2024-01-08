@@ -1,11 +1,11 @@
 import {fileURLToPath} from 'url'
 import mongoose from 'mongoose'
-import Product from '../../../models/Product'
+import Category from '../../../models/Category'
 
 const __filename = fileURLToPath(import.meta.url)
 
-const createProduct = async (payload) => {
-	console.log('Invoke #createProduct()', payload, __filename)
+const createCategory = async (payload) => {
+	console.log('Invoke #createCategory()', payload, __filename)
 
 	const session = await mongoose.startSession()
 	session.startTransaction()
@@ -13,14 +13,14 @@ const createProduct = async (payload) => {
 	try {
 		const {name} = payload
 
-		const exist = await Product.findOne({name, deleted_at: null})
+		const exist = await Category.findOne({name, deleted_at: null})
 
 		if (exist) {
 			const error = `Name "${name}" was already in used`
 			return {status_code: 400, error}
 		}
 
-		const response = await Product.create(payload)
+		const response = await Category.create(payload)
 
 		session.commitTransaction()
 		session.endSession()
@@ -40,4 +40,4 @@ const createProduct = async (payload) => {
 	}
 }
 
-export default createProduct
+export default createCategory

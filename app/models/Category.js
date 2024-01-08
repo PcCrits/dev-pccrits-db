@@ -3,13 +3,18 @@ import {model, Schema} from 'mongoose'
 export const categorySchema = new Schema(
 	{
 		name: {
-			type: String
+			type: String,
+			required: [true, 'Field `name` is required']
 		},
 		description: {
 			type: String
 		},
 		image: {
 			type: String
+		},
+		deleted_at: {
+			type: Date,
+			default: null
 		}
 	},
 	{

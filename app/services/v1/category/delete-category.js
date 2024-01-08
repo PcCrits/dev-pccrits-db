@@ -1,34 +1,34 @@
 import {fileURLToPath} from 'url'
 import mongoose from 'mongoose'
-import Product from '../../../models/Product'
+import Category from '../../../models/Category'
 
 const __filename = fileURLToPath(import.meta.url)
 
-const createProduct = async (payload) => {
-	console.log('Invoke #createProduct()', payload, __filename)
+const deleteCategory = async (payload) => {
+	console.log('Invoke #deleteCategory()', payload, __filename)
 
 	const session = await mongoose.startSession()
 	session.startTransaction()
 
 	try {
-		const {name} = payload
+		const response = await Category.findOne({_id: payload.id, deleted_at: null})
 
-		const exist = await Product.findOne({name, deleted_at: null})
+		if (!response) {
+			const error = 'Category you are trying to delete was not found'
 
-		if (exist) {
-			const error = `Name "${name}" was already in used`
 			return {status_code: 400, error}
 		}
-
-		const response = await Product.create(payload)
-
+ 
+		await Category.findByIdAndUpdate(payload.id, {
+			deleted_at: new Date()
+		})
+		
 		session.commitTransaction()
 		session.endSession()
 
 		return {
 			status_code: 200,
-			success: true,
-			data: response
+			success: true
 		}
 	} catch (error) {
 		console.log(error)
@@ -40,4 +40,4 @@ const createProduct = async (payload) => {
 	}
 }
 
-export default createProduct
+export default deleteCategory

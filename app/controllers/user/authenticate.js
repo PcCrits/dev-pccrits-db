@@ -27,6 +27,7 @@ export const authenticate = async (req, res) => {
 		req.session.user = user
 		req.session.ext_user_token = user._id
 		req.session.cookie.expires = new Date(Date.now() + hour)
+		req.session.isAdmin = user.admin
 
 		return res.status(statusCode).send({status_code: 200, success: true, data: user})
 	} catch (err) {

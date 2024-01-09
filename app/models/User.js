@@ -1,5 +1,15 @@
 import {model, Schema} from 'mongoose'
 
+const addressInfo = {
+	billing: Boolean,
+	default: Boolean,
+	street_name: String,
+	house_number: Number,
+	zip_code: String,
+	city: String,
+	country: String
+}
+
 export const userSchema = new Schema(
 	{
 		first_name: {
@@ -23,14 +33,14 @@ export const userSchema = new Schema(
 		gender: {
 			type: String
 		},
-		// address: {
-		// 	type: Schema.Types.ObjectId,
-		// 	ref: 'Address'
-		// },
-		// organizations: [{
-		// 	type: Schema.Types.ObjectId,
-		// 	ref: 'Organization'
-		// }],
+		profile_image: {
+			type: String
+		},
+		address: [addressInfo],
+		user_type: {
+			type: String,
+			required: [true, 'Field `user_type` is required']
+		},
 		password: {
 			type: String,
 			required: [true, 'Field `password` is required']

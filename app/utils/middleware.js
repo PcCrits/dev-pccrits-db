@@ -35,3 +35,11 @@ export const protectRoute = (req, res, next) => {
 	}
 	return res.status(401).send(i18next.t('unauthorized_user'))
 }
+
+export const adminProtectRoute = (req, res, next) => {
+	console.log('ckh:: ', req.session)
+	if (req.session?.authenticated && req.session?.isAdmin) {
+		return next()
+	}
+	return res.status(401).send(i18next.t('unauthorized_user'))
+}

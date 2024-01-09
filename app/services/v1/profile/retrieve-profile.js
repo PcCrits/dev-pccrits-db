@@ -1,19 +1,19 @@
 import {fileURLToPath} from 'url'
-import Product from '../../../models/Product'
+import User from '../../../models/User'
 
 const __filename = fileURLToPath(import.meta.url)
 
-const retrieveProduct = async (payload) => {
-	console.log('Invoke #retrieveProduct()', payload, __filename)
+const retrieveProfile = async (payload) => {
+	console.log('Invoke #retrieveProfile()', payload, __filename)
 
 	try {
-		const response = await Product.findOne({
+		const response = await User.findOne({
 			_id: payload.id,
 			deleted_at: null
 		})
 
 		if (!response) {
-			const error = 'Cannot find Product'
+			const error = 'Cannot find Profile'
 
 			return {status_code: 400, error}
 		}
@@ -30,4 +30,4 @@ const retrieveProduct = async (payload) => {
 	}
 }
 
-export default retrieveProduct
+export default retrieveProfile
